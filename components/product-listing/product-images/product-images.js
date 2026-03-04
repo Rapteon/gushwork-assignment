@@ -31,6 +31,10 @@ class ProductImages extends HTMLElement {
     styleLink.href = "/components/product-listing/product-images/style.css";
     styleLink.rel = "stylesheet";
     this.shadow.appendChild(styleLink);
+
+    // For selecting images in carousel
+    this.selectedImageIdx = 0;
+    this.imgUrls = [];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -50,9 +54,14 @@ class ProductImages extends HTMLElement {
       'ul[class="product-images-list"]',
     );
     const srcset = this.getAttribute("srcset") ?? "";
-    const imgUrls = srcset.split(" ") ?? [];
+    this.imgUrls = srcset.split(" ") ?? [""]; // fills a single blank URL if no srcset provided.
 
-    imgUrls.forEach((imgUrl, idx) => {
+    // Delete existing li elements, if any
+    for (let i = 0; i < allImagesCarousel?.children?.length; i++) {
+      allImagesCarousel.removeChild(allImagesCarousel.children[i]);
+    }
+
+    this.imgUrls.forEach((imgUrl, idx) => {
       const li = document.createElement("li");
       const img = document.createElement("img");
       img.id = `product-image-${idx}`;

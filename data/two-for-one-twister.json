@@ -1,7 +1,7 @@
 {
   "title": "Advanced Robotic Arm Control System",
   "tags": ["robotics", "control", "arm", "automation", "industrial"],
-  "imgSet": ["/assets/images/fishnet-manufacturing.jpg", "", "", "", "", ""],
+  "imgSet": ["/assets/images/fishnet-manufacturing.jpg", "", "/assets/images/fishnet-manufacturing.jpg", "", "", ""],
   "features": [
     "PID Control",
     "Force Feedback",
