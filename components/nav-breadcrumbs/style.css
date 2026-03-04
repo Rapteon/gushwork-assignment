@@ -1,0 +1,29 @@
+/* Navigation list styles BEGIN */
+nav[class="breadcrumb-navigation"] {
+  font-family: "Inter Regular", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.6%;
+}
+
+nav[class="breadcrumb-navigation"] ul {
+  display: flex;
+  flex-direction: row;
+}
+
+nav[class="breadcrumb-navigation"] li {
+  list-style-type: none;
+  display: inline;
+}
+
+nav[class="breadcrumb-navigation"] li::after {
+  content: url("/assets/images/caret-right.svg");
+  padding: 8px;
+}
+
+nav[class="breadcrumb-navigation"] li:last-of-type::after {
+  content: "";
+}
+
+/* Navigation list styles END */

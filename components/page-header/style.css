@@ -1,0 +1,76 @@
+/* Header styles BEGIN */
+#header-site-logo {
+  width: 109px;
+  height: 45px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Inter Medium";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.6%;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-buttons p {
+  cursor: pointer;
+}
+.header-buttons > button {
+  background-color: var(--blue);
+  color: white;
+  width: 107px;
+  height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+div[class="product-dropdown"] > ul {
+  position: absolute;
+}
+
+div[class="product-dropdown"] li {
+  list-style-type: none;
+}
+
+@media screen and (max-width: 1600px) {
+  header {
+    padding: 16px 100px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  header {
+    padding: 16px 80px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  header {
+    padding: 60px 80px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  header {
+    padding: 80px 48px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  header {
+    padding: 48px 16px;
+  }
+  .header-buttons {
+    display: none;
+  }
+}
+
+/* Header styles END */

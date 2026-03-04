@@ -9,27 +9,25 @@
       href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css"
     />
     <link rel="stylesheet" href="../styles.css" type="text/css" />
+    <!-- Load all types first -->
+    <script src="../types/NavData.js" defer></script>
+
+    <!-- Load components after types -->
+    <script src="../components/page-header/page-header.js" defer></script>
+    <script
+      src="../components/nav-breadcrumbs/nav-breadcrumbs.js"
+      defer
+    ></script>
+
+    <!-- Load main script -->
     <script src="../script.js" defer></script>
+
+    <!-- Load common styles -->
+    <link rel="stylesheet" href="../styles.css" type="text/css" />
   </head>
   <body>
-    <header>
-      <img
-        id="header-site-logo"
-        src="../assets/images/site-logo.png"
-        alt=""
-        width="109"
-        height="45"
-      />
-      <div class="header-buttons">
-        <p>About Us</p>
-        <div class="product-dropdown">
-          <p>Products</p>
-          <ul></ul>
-        </div>
-        <button type="button">Contact Us</button>
-      </div>
-    </header>
-    <nav class="breadcrumb-navigation"><ol></ol></nav>
+    <page-header></page-header>
+    <nav-breadcrumbs></nav-breadcrumbs>
     <main>
       <section class="product-info"></section>
     </main>

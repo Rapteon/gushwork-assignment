@@ -8,12 +8,12 @@
 
 @font-face {
   font-family: "Inter Medium";
-  src: url("./assets/fonts/inter/static/Inter_18pt-Medium.ttf");
+  src: url("/assets/fonts/inter/static/Inter_18pt-Medium.ttf");
 }
 
 @font-face {
   font-family: "Inter Regular";
-  src: url("./assets/fonts/inter/static/Inter_18pt-Regular.ttf");
+  src: url("/assets/fonts/inter/static/Inter_18pt-Regular.ttf");
 }
 
 html {
@@ -38,120 +38,13 @@ body {
 }
 
 .dropdown-caret-unopened::after {
-  content: url("./assets/images/dropdown-caret-unopened.svg");
+  content: url("/assets/images/dropdown-caret-unopened.svg");
   margin-left: 5px;
 }
 
 .dropdown-caret-opened::after {
-  content: url("./assets/images/dropdown-caret-opened.svg");
+  content: url("/assets/images/dropdown-caret-opened.svg");
   margin-left: 5px;
 }
 
 /* Common styles END */
-
-/* Header styles BEGIN */
-#header-site-logo {
-  width: 109px;
-  height: 45px;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  font-family: "Inter Medium";
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.6%;
-}
-
-.header-buttons {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.header-buttons p {
-  cursor: pointer;
-}
-.header-buttons > button {
-  background-color: var(--blue);
-  color: white;
-  width: 107px;
-  height: 44px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-div[class="product-dropdown"] > ul {
-  position: absolute;
-}
-
-div[class="product-dropdown"] li {
-  list-style-type: none;
-}
-
-@media screen and (max-width: 1600px) {
-  header {
-    padding: 16px 100px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  header {
-    padding: 16px 80px;
-  }
-}
-
-@media screen and (max-width: 1080px) {
-  header {
-    padding: 60px 80px;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  header {
-    padding: 80px 48px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  header {
-    padding: 48px 16px;
-  }
-  .header-buttons {
-    display: none;
-  }
-}
-
-/* Header styles END */
-
-/* Navigation list styles BEGIN */
-nav[class="breadcrumb-navigation"] {
-  font-family: "Inter Regular", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.6%;
-}
-
-nav[class="breadcrumb-navigation"] ul {
-  display: flex;
-  flex-direction: row;
-}
-
-nav[class="breadcrumb-navigation"] li {
-  list-style-type: none;
-  display: inline;
-}
-
-nav[class="breadcrumb-navigation"] li::after {
-  content: url("./assets/images/caret-right.svg");
-  padding: 8px;
-}
-
-nav[class="breadcrumb-navigation"] li:last-of-type::after {
-  content: "";
-}
-
-/* Navigation list styles END */
