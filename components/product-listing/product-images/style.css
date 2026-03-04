@@ -1,0 +1,48 @@
+.product-images {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image-focused {
+  border-radius: 24px;
+  border: 3px solid white;
+}
+
+.blank-image {
+  background-image: white;
+}
+
+/* TODO. height and width must be changed for smaller screen sizes */
+/* TODO. border width and radius must be changed for smaller screensizes */
+.unfocused-image {
+  width: 80px;
+  height: 80px;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+
+.product-images-list {
+  display: flex;
+  gap: 20px;
+}
+
+.product-images-list > li {
+  list-style-type: none;
+}
+
+@media screen and (max-width: 1600px) {
+  .product-image-focused {
+    width: 35vw;
+  }
+  .product-images-list {
+    width: 35vw;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Hide scrollbar */
+  .product-images-list::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari */
+  }
+}

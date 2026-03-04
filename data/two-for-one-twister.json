@@ -1,0 +1,24 @@
+{
+  "title": "Advanced Robotic Arm Control System",
+  "tags": ["robotics", "control", "arm", "automation", "industrial"],
+  "imgSet": ["/assets/images/fishnet-manufacturing.jpg", "", "", "", "", ""],
+  "features": [
+    "PID Control",
+    "Force Feedback",
+    "Motion Planning",
+    "Machine Learning"
+  ],
+  "priceRange": [100000, 300000],
+  "shippingDuration": [3, 7],
+  "returnDuration": 30,
+  "certifications": ["ISO 9001", "ISO 14001", "CMMI Compliance"],
+  "technicalSpecs": {
+    "Processor": "Intel Core i7-12700",
+    "Memory": "16GB DDR4",
+    "Storage": "256GB NVMe SSD",
+    "Motor Drivers": "High-Speed, Precise",
+    "Sensors": ["Ultrasonic Sensor", "LiDAR Sensor"],
+    "Operating Temperature": "18-25°C",
+    "Power Consumption": "15W"
+  }
+}
