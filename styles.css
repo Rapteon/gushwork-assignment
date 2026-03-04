@@ -6,16 +6,6 @@
   --blue: #2b3990;
 }
 
-@font-face {
-  font-family: "Inter Medium";
-  src: url("/assets/fonts/inter/static/Inter_18pt-Medium.ttf");
-}
-
-@font-face {
-  font-family: "Inter Regular";
-  src: url("/assets/fonts/inter/static/Inter_18pt-Regular.ttf");
-}
-
 html {
   box-sizing: border-box;
 }
