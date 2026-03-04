@@ -1,6 +1,7 @@
 /* Navigation list styles BEGIN */
 nav[class="breadcrumb-navigation"] {
-  font-family: "Inter Regular", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
