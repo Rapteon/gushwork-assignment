@@ -10,21 +10,30 @@
     />
     <!-- Load all types first -->
     <script src="./types/NavData.js" defer></script>
-    
+
     <!-- Load components after types -->
     <script src="./components/page-header/page-header.js" defer></script>
-    <script src="./components/nav-breadcrumbs/nav-breadcrumbs.js" defer></script>
+    <script
+      src="./components/nav-breadcrumbs/nav-breadcrumbs.js"
+      defer
+    ></script>
 
     <!-- Load main script -->
     <script src="script.js" defer></script>
 
     <!-- Load common styles -->
     <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <page-header></page-header>
     <!-- <nav class="breadcrumb-navigation"><ol></ol></nav> -->
-     <nav-breadcrumbs></nav-breadcrumbs>
+    <nav-breadcrumbs></nav-breadcrumbs>
     <main></main>
     <footer></footer>
   </body>
