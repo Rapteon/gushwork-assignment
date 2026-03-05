@@ -3,59 +3,47 @@ class PageHeader extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
-    const shadow = this.attachShadow({ mode: "open" });
-    const header = document.createElement("header");
+  async connectedCallback() {
+    const shadowRoot = this.attachShadow({ mode: "open" });
 
-    // Fetch template
-    fetch("/components/page-header/template.html").then((response) => {
-      if (response.ok) {
-        response.text().then((value) => {
-          header.innerHTML = value;
-          shadow.appendChild(document.importNode(header, true));
-          this.#setupProductDropdown(shadow);
-        });
-      } else {
-        header.innerHTML = `Please check path to template in page-header component`;
-      }
-      // Set font class.
-      header.classList.add("body-14-medium")
-    });
+    shadowRoot.appendChild(document.importNode(getStyleNode("/styles.css")));
+    shadowRoot.appendChild(
+      document.importNode(getStyleNode("/components/page-header/style.css")),
+    );
 
-    // Set common styles. Didn't use a <link> tag because of limitations with setting path.
-    fetch("/styles.css").then((response) => {
-      if (response.ok) {
-        const style = document.createElement("style");
-        response.text().then((data) => {
-          style.textContent = data;
-        });
-        shadow.appendChild(style);
-      }
-    });
+    // Fetch template content
+    const templateContent = await fetchTemplateContent(
+      "/components/page-header/template.html",
+    );
 
-    // Fetch styles
-    const styleLink = document.createElement("link");
-    styleLink.href = "/components/page-header/style.css";
-    styleLink.rel = "stylesheet";
-    shadow.appendChild(styleLink);
+    let parser = new DOMParser();
+    let templateDoc = parser.parseFromString(templateContent, "text/html");
+
+    const header = templateDoc.querySelector("header");
+    shadowRoot.appendChild(document.importNode(header, true));
+
+    this.#setupProductDropdown(shadowRoot);
   }
 
   // For product drop-down navigation in header.
   #setupProductDropdown = function (shadowRoot) {
     const productNavData = [
-      new NavData("products/two-for-one-twister.html", "Two For One Twister"),
-      new NavData("products/tprs-twister-machine.html", "TPRS Twister Machine"),
+      new NavData("/products/two-for-one-twister.html", "Two For One Twister"),
       new NavData(
-        "products/ring-twisting-machines.html",
+        "/products/tprs-twister-machine.html",
+        "TPRS Twister Machine",
+      ),
+      new NavData(
+        "/products/ring-twisting-machines.html",
         "Ring Twisting Machines",
       ),
-      new NavData("products/covering-machines.html", "Covering Machines"),
+      new NavData("/products/covering-machines.html", "Covering Machines"),
       new NavData(
-        "products/heat-setting-equipment.html",
+        "/products/heat-setting-equipment.html",
         "Heat Setting Equipment",
       ),
       new NavData(
-        "products/servo-controlled-winders",
+        "/products/servo-controlled-winders",
         "Servo Controlled Winders",
       ),
     ];
@@ -65,6 +53,7 @@ class PageHeader extends HTMLElement {
     const productDropdownText = productDropdown.querySelector("p");
     const productList = productDropdown.querySelector("ul");
     for (let navData of productNavData) {
+      console.log(navData);
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = navData.url;

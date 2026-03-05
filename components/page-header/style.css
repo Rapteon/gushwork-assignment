@@ -1,4 +1,3 @@
-/* Header styles BEGIN */
 #header-site-logo {
   width: 109px;
   height: 45px;
@@ -67,5 +66,3 @@ div[class="product-dropdown"] li {
     display: none;
   }
 }
-
-/* Header styles END */
