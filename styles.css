@@ -1,7 +1,9 @@
 /* Common styles BEGIN */
 :root {
   --neutral-100: #e1e3e8;
+  --neutral-200: #cfd1d4;
   --neutral-900: #262a2e;
+  --neutral-600: #6a7077;
   --neutral-25: #f7f8f9;
   --neutral-black: #0d0d0d;
   --blue: #2b3990;
@@ -53,4 +55,19 @@ body {
   line-height: 20px;
 }
 
+.body-16-regular {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.6%;
+  line-height: 24px;
+}
+
+.body-20-semibold {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.6%;
+}
 /* Common styles END */

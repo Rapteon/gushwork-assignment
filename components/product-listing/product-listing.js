@@ -14,6 +14,15 @@ class ProductListing extends HTMLElement {
     ];
     loadComponents(dependencies, shadow);
 
+    // Add common styles
+    shadow.appendChild(document.importNode(getStyleNode("/styles.css"), true));
+    // Add component styles
+    shadow.appendChild(
+      document.importNode(
+        getStyleNode("/components/product-listing/style.css"),
+        true,
+      ),
+    );
     // Fetch template
     const templateContent = await fetchTemplateContent(
       "/components/product-listing/template.html",
@@ -43,17 +52,19 @@ class ProductListing extends HTMLElement {
         const productTags = shadowRoot.querySelector("product-tags");
         productTags.setAttribute("tags", json["tags"].join(","));
 
-        const title = shadowRoot.querySelector("h2");
+        const title = shadowRoot.querySelector("h1");
         title.innerText = json["title"];
 
-        const featuresList = shadowRoot.querySelector(".product-features");
+        const featuresList = shadowRoot.querySelector(
+          'ul[class~="product-features"',
+        );
         json["features"].forEach((feature) => {
           const li = document.createElement("li");
           li.innerText = feature;
           featuresList.appendChild(li);
         });
 
-        const priceRange = shadowRoot.querySelector(".price-range-value");
+        const priceRange = shadowRoot.querySelector('p[class~="price-range-value"]');
         priceRange.innerText = json["priceRange"];
 
         // const stickyHeader = shadowRoot.querySelector("sticky-header");

@@ -6,9 +6,9 @@ class PageHeader extends HTMLElement {
   async connectedCallback() {
     const shadowRoot = this.attachShadow({ mode: "open" });
 
-    shadowRoot.appendChild(document.importNode(getStyleNode("/styles.css")));
+    shadowRoot.appendChild(document.importNode(getStyleNode("/styles.css"), true));
     shadowRoot.appendChild(
-      document.importNode(getStyleNode("/components/page-header/style.css")),
+      document.importNode(getStyleNode("/components/page-header/style.css"), true),
     );
 
     // Fetch template content

@@ -18,6 +18,15 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Page-specific stylesheet -->
+    <link rel="stylesheet" href="/products/products.css" />
 
     <!-- Load all types first -->
     <script src="../types/NavData.js" defer></script>
@@ -45,7 +54,7 @@
       <section class="product-info">
         <nav-breadcrumbs></nav-breadcrumbs>
         <product-listing
-          dataPath="/data/two-for-one-twister.json"
+          dataSrc="/data/two-for-one-twister.json"
         ></product-listing>
       </section>
     </main>

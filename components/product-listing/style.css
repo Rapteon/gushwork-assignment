@@ -1,0 +1,36 @@
+.product-listing-container {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.product-details h1 {
+  font-family: "Urbanist";
+  font-weight: 700;
+  font-style: bold;
+  font-size: 56px;
+  line-height: 120%;
+}
+
+.price-range-label {
+  color: var(--neutral-600);
+}
+
+.price-range-container {
+  padding: 16px 20px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid var(--neutral-200);
+}
+
+.product-features {
+  padding-left: 0;
+}
+.product-features > li::before {
+  content: url("/assets/images/checked-circle.svg");
+  padding-right: 0.5em;
+}
+.product-features > li {
+  display: block;
+  list-style-type: none;
+}
