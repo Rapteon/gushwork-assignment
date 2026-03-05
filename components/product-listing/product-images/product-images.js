@@ -7,35 +7,32 @@ class ProductImages extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
-    this.shadow = this.attachShadow({ mode: "open" });
-    const div = document.createElement("table");
-    div.classList.add("product-images");
+  async connectedCallback() {
+    const shadow = this.attachShadow({ mode: "open" });
 
-    // Fetch template content
-    fetch("/components/product-listing/product-images/template.html").then(
-      (response) => {
-        if (response.ok) {
-          response.text().then((text) => {
-            div.innerHTML = text;
-            this.shadow.appendChild(document.importNode(div, true));
-            this.#setupImages(this.shadow);
-          });
-        } else {
-          div.textContent = "Please check path to template in component";
-        }
-      },
+    // Add common styles.
+    shadow.appendChild(getStyleNode("/styles.css"));
+    // Add component-specific styles
+    shadow.appendChild(
+      getStyleNode("/components/product-listing/product-images/style.css"),
     );
 
-    // Fetch styles
-    const styleLink = document.createElement("link");
-    styleLink.href = "/components/product-listing/product-images/style.css";
-    styleLink.rel = "stylesheet";
-    this.shadow.appendChild(styleLink);
+    const templateContent = await fetchTemplateContent(
+      "/components/product-listing/product-images/template.html",
+    );
+
+    let parser = new DOMParser();
+    let templateDoc = parser.parseFromString(templateContent, "text/html");
+
+    const div = templateDoc.querySelector("div");
 
     // For selecting images in carousel
     this.selectedImageIdx = 0;
     this.imgUrls = [];
+
+    shadow.appendChild(document.importNode(div, true));
+    this.#updateImages(shadow);
+    this.#setupClickListeners(shadow);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -43,12 +40,50 @@ class ProductImages extends HTMLElement {
     // will be called because we now have a static getter function called
     // observedAttributes()
     // Do something special if required here.
-    if (name === "srcset" && this.shadow) {
-      this.#setupImages(this.shadow);
+    if (name === "srcset" && this.shadowRoot) {
+      this.#updateImages(this.shadowRoot);
     }
   }
 
-  #setupImages = function (shadowRoot) {
+  #setupClickListeners(shadowRoot) {
+    // Add click listener for next/prev image functionality
+    const leftBtn = shadowRoot.querySelector(".left-btn");
+    const rightBtn = shadowRoot.querySelector(".right-btn");
+
+    if (leftBtn) {
+      leftBtn.addEventListener("click", () => {
+        this.previousImage(shadowRoot);
+      });
+    }
+
+    if (rightBtn) {
+      rightBtn.addEventListener("click", () => {
+        this.nextImage(shadowRoot);
+      });
+    }
+  }
+  setupZoomBox = function (focusedImage) {
+    const zoomBox = document.createElement("div");
+    zoomBox.className = "zoom-box";
+    focusedImage.parentElement.appendChild(zoomBox);
+
+    focusedImage.addEventListener("mousemove", (e) => {
+      const rect = focusedImage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      zoomBox.style.backgroundImage = `url(${focusedImage.src})`;
+      zoomBox.style.backgroundPosition = `${-x * 2}px ${-y * 2}px`;
+      zoomBox.style.display = "block";
+      focusedImage.style.cursor = "zoom-in";
+    });
+
+    focusedImage.addEventListener("mouseleave", () => {
+      zoomBox.style.display = "none";
+    });
+  };
+
+  #updateImages = function (shadowRoot) {
     const allImagesCarousel = shadowRoot.querySelector(
       'ul[class="product-images-list"]',
     );
@@ -85,66 +120,29 @@ class ProductImages extends HTMLElement {
       focusedImage.src = firstImage.src;
     }
     // Add zoom box functionality
-    this.#setupZoomBox(shadowRoot, focusedImage);
-
-    // Add click listener for next/prev image functionality
-    const leftBtn = shadowRoot.querySelector(".left-btn");
-    const rightBtn = shadowRoot.querySelector(".right-btn");
-
-    if (leftBtn) {
-      leftBtn.addEventListener("click", () => {
-        this.previousImage();
-      });
-    }
-
-    if (rightBtn) {
-      rightBtn.addEventListener("click", () => {
-        this.nextImage();
-      });
-    }
+    this.setupZoomBox(focusedImage);
   };
 
-  #setupZoomBox = function (shadowRoot, focusedImage) {
-    const zoomBox = document.createElement("div");
-    zoomBox.className = "zoom-box";
-    focusedImage.parentElement.appendChild(zoomBox);
-
-    focusedImage.addEventListener("mousemove", (e) => {
-      const rect = focusedImage.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      zoomBox.style.backgroundImage = `url(${focusedImage.src})`;
-      zoomBox.style.backgroundPosition = `${-x * 2}px ${-y * 2}px`;
-      zoomBox.style.display = "block";
-      focusedImage.style.cursor = "zoom-in";
-    });
-
-    focusedImage.addEventListener("mouseleave", () => {
-      zoomBox.style.display = "none";
-    });
-  };
-
-  nextImage = function () {
-    if (this.imgUrls.length === 0) {
+  nextImage = function (shadowRoot) {
+    if (
+      this.imgUrls.length === 0 ||
+      this.selectedImageIdx === this.imgUrls.length - 1
+    ) {
       return;
     }
-    this.selectedImageIdx = (this.selectedImageIdx + 1) % this.imgUrls.length;
-    const focusedImage = this.shadow.querySelector(
+    this.selectedImageIdx += 1;
+    const focusedImage = shadowRoot.querySelector(
       'img[class="product-image-focused"]',
     );
     focusedImage.src = this.imgUrls[this.selectedImageIdx];
   };
 
-  previousImage = function () {
-    if (this.imgUrls.length === 0) {
+  previousImage = function (shadowRoot) {
+    if (this.imgUrls.length === 0 || this.selectedImageIdx == 0) {
       return;
     }
-    this.selectedImageIdx = (this.selectedImageIdx - 1) % this.imgUrls.length;
-    if (this.selectedImageIdx < 0) {
-      this.selectedImageIdx = this.imgUrls.length - 1;
-    }
-    const focusedImage = this.shadow.querySelector(
+    this.selectedImageIdx -= 1;
+    const focusedImage = shadowRoot.querySelector(
       'img[class="product-image-focused"]',
     );
     focusedImage.src = this.imgUrls[this.selectedImageIdx];
