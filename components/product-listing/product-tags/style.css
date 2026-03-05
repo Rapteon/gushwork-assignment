@@ -1,0 +1,20 @@
+.tag-container {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.product-tag {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--neutral-25);
+  border: 1px solid var(--neutral-100);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.product-tag > img {
+  display: inline-block;
+}
