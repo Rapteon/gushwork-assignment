@@ -3,42 +3,32 @@ class NavBreadcrumbs extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
-    const shadow = this.attachShadow({ mode: "open" });
+  async connectedCallback() {
+    const shadowRoot = this.attachShadow({ mode: "open" });
 
-    // Create HTML element
-    const nav = document.createElement("nav");
-    nav.classList.add("breadcrumb-navigation");
-    nav.classList.add("body-14-regular");
-    const ol = document.createElement("ol");
-    nav.appendChild(ol);
-    shadow.appendChild(nav, true);
+    // Add common styles.
+    shadowRoot.appendChild(getStyleNode("/styles.css"));
+    // Add component-specific styles
+    shadowRoot.appendChild(
+      getStyleNode("/components/nav-breadcrumbs/style.css"),
+    );
 
-    // Set common styles. Didn't use a <link> tag because of limitations with setting path.
-    // Used in multiple places, maybe refactor later. TODO
-    fetch("/styles.css").then((response) => {
-      if (response.ok) {
-        const style = document.createElement("style");
-        response.text().then((data) => {
-          style.textContent = data;
-        });
-        shadow.appendChild(style);
-      }
-    });
+    const templateContent = await fetchTemplateContent(
+      "/components/nav-breadcrumbs/template.html",
+    );
 
-    // Fetch styles
-    // Used in multiple places, maybe refactor later. TODO
-    const styleLink = document.createElement("link");
-    styleLink.href = "/components/nav-breadcrumbs/style.css";
-    styleLink.rel = "stylesheet";
-    shadow.appendChild(styleLink);
+    let parser = new DOMParser();
+    let templateDoc = parser.parseFromString(templateContent, "text/html");
 
-    // Setup data
-    this.#updateData(this);
+    const nav = templateDoc.querySelector("nav");
+
+    shadowRoot.appendChild(document.importNode(nav, true));
+
+    // Update data
+    this.#updateData(shadowRoot);
   }
 
-  #updateData = function (element) {
-    const shadowRoot = element.shadowRoot;
+  #updateData = function (shadowRoot) {
     function getTextFromFilename(str) {
       str = str.substring(0, str.indexOf("."));
       str = str.replaceAll("-", " ");
