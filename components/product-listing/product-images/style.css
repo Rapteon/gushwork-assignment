@@ -67,6 +67,22 @@ img {
   width: 100%;
 }
 
+.zoom-box {
+  position: absolute;
+  display: none;
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+  overflow: hidden;
+  pointer-events: none;
+
+  top: 50px;
+  right: -400px;
+  width: 350px;
+  height: 350px;
+  border: 2px solid #909090;
+  border-radius: 12px;
+}
+
 @media screen and (max-width: 1600px) {
   .product-images {
     width: 35vw;

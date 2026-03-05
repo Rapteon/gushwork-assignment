@@ -80,6 +80,29 @@ class ProductImages extends HTMLElement {
     if (firstImage) {
       focusedImage.src = firstImage.src;
     }
+    // Add zoom box functionality
+    this.#setupZoomBox(shadowRoot, focusedImage);
+  };
+
+  #setupZoomBox = function (shadowRoot, focusedImage) {
+    const zoomBox = document.createElement("div");
+    zoomBox.className = "zoom-box";
+    focusedImage.parentElement.appendChild(zoomBox);
+
+    focusedImage.addEventListener("mousemove", (e) => {
+      const rect = focusedImage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      zoomBox.style.backgroundImage = `url(${focusedImage.src})`;
+      zoomBox.style.backgroundPosition = `${-x * 2}px ${-y * 2}px`;
+      zoomBox.style.display = "block";
+      focusedImage.style.cursor = "zoom-in";
+    });
+
+    focusedImage.addEventListener("mouseleave", () => {
+      zoomBox.style.display = "none";
+    });
   };
 }
 
