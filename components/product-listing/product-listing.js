@@ -11,13 +11,16 @@ class ProductListing extends HTMLElement {
     const div = document.createElement("div");
 
     // Add script tags for components used by this class.
-    let uses = ["/components/product-listing/product-images/product-images.js"]
+    let uses = [
+      "/components/product-listing/product-images/product-images.js",
+      "/components/product-listing/product-tags/product-tags.js",
+    ];
     for (let use of uses) {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
       script.src = use;
       shadow.appendChild(script);
     }
-    
+
     // Fetch template
     // Can be refactored later into a function which appends
     // a noed by fetching innerHTML from a template at a specific path
@@ -43,10 +46,11 @@ class ProductListing extends HTMLElement {
         }
       })
       .then((json) => {
-        console.log(json);
         const productImages = shadowRoot.querySelector("product-images");
         productImages.setAttribute("srcset", json["imgSet"].join(" "));
-        console.log(productImages);
+        
+        const productTags = shadowRoot.querySelector("product-tags");
+        productTags.setAttribute("tags", json["tags"].join(","));
       });
   };
 }

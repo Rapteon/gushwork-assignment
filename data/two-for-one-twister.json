@@ -1,24 +1,34 @@
 {
-  "title": "Advanced Robotic Arm Control System",
-  "tags": ["robotics", "control", "arm", "automation", "industrial"],
-  "imgSet": ["/assets/images/fishnet-manufacturing.jpg", "", "/assets/images/fishnet-manufacturing.jpg", "", "", ""],
-  "features": [
-    "PID Control",
-    "Force Feedback",
-    "Motion Planning",
-    "Machine Learning"
+  "title": "Premium HDPE Pipes & Coils for Modern Infrastructure",
+  "tags": ["BIS Certified", "ISO Certified", "CE Certified"],
+  "imgSet": [
+    "/assets/images/fishnet-manufacturing.jpg",
+    "",
+    "/assets/images/fishnet-manufacturing.jpg",
+    "",
+    "",
+    ""
   ],
-  "priceRange": [100000, 300000],
-  "shippingDuration": [3, 7],
-  "returnDuration": 30,
-  "certifications": ["ISO 9001", "ISO 14001", "CMMI Compliance"],
+  "features": [
+    "Leak-Proof Fusion Joints",
+    "Chemical Resistance",
+    "50+ Year Service Life",
+    "Flexible Installation",
+    "Flexible Installation"
+  ],
+  "priceRange": [480000, 790000],
+  "shipping": "6-12 days",
+  "returns": "if returned within 7 days",
   "technicalSpecs": {
-    "Processor": "Intel Core i7-12700",
-    "Memory": "16GB DDR4",
-    "Storage": "256GB NVMe SSD",
-    "Motor Drivers": "High-Speed, Precise",
-    "Sensors": ["Ultrasonic Sensor", "LiDAR Sensor"],
-    "Operating Temperature": "18-25°C",
-    "Power Consumption": "15W"
+    "Pipe Diameter Range": "20mm to 1600mm (3/4” to 63”)",
+    "Pressure Ratings": "PN 2.5, PN 4, PN 6, PN 8, PN 10, PN 12.5, PN 16",
+    "Standard Dimension Ratio": "SDR 33, SDR 26, SDR 21, SDR 17, SDR 13.6, SDR 11256GB NVMe SSD",
+    "Operating Temperature": "-40C to +80C (-40F to +176F)",
+    "Service Life": "50+ Years (at 20 degrees C, PN 10)",
+    "Material Density": "15W0.95 - 0.96 g/cm3",
+    "Certification Standards": "IS 5984, ISO 4427, ASTM D3035",
+    "Joint Type": "Butt Fusion, Electrofusion, Mechanical",
+    "Coil Lengths": "Up to 500mm (for smaller diameters)",
+    "Country of Origin": "IN"
   }
 }
