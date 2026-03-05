@@ -21,3 +21,12 @@ async function fetchTemplateContent(templateUrl) {
 
   return content;
 }
+
+function loadComponents(scriptUrls, shadowRoot) {
+  for (let url of scriptUrls) {
+    const script = document.createElement("script");
+    script.src = url;
+    script.setAttribute("defer", "");
+    shadowRoot.appendChild(script);
+  }
+}
