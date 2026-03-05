@@ -82,6 +82,22 @@ class ProductImages extends HTMLElement {
     }
     // Add zoom box functionality
     this.#setupZoomBox(shadowRoot, focusedImage);
+
+    // Add click listener for next/prev image functionality
+    const leftBtn = shadowRoot.querySelector(".left-btn");
+    const rightBtn = shadowRoot.querySelector(".right-btn");
+
+    if (leftBtn) {
+      leftBtn.addEventListener("click", () => {
+        this.previousImage();
+      });
+    }
+
+    if (rightBtn) {
+      rightBtn.addEventListener("click", () => {
+        this.nextImage();
+      });
+    }
   };
 
   #setupZoomBox = function (shadowRoot, focusedImage) {
@@ -103,6 +119,31 @@ class ProductImages extends HTMLElement {
     focusedImage.addEventListener("mouseleave", () => {
       zoomBox.style.display = "none";
     });
+  };
+
+  nextImage = function () {
+    if (this.imgUrls.length === 0) {
+      return;
+    }
+    this.selectedImageIdx = (this.selectedImageIdx + 1) % this.imgUrls.length;
+    const focusedImage = this.shadow.querySelector(
+      'img[class="product-image-focused"]',
+    );
+    focusedImage.src = this.imgUrls[this.selectedImageIdx];
+  };
+
+  previousImage = function () {
+    if (this.imgUrls.length === 0) {
+      return;
+    }
+    this.selectedImageIdx = (this.selectedImageIdx - 1) % this.imgUrls.length;
+    if (this.selectedImageIdx < 0) {
+      this.selectedImageIdx = this.imgUrls.length - 1;
+    }
+    const focusedImage = this.shadow.querySelector(
+      'img[class="product-image-focused"]',
+    );
+    focusedImage.src = this.imgUrls[this.selectedImageIdx];
   };
 }
 
