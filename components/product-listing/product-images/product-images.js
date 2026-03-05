@@ -42,11 +42,6 @@ class ProductImages extends HTMLElement {
     // will be called because we now have a static getter function called
     // observedAttributes()
     // Do something special if required here.
-    if (name === "srcset") {
-      if (this.shadow) {
-        this.#setupImages(this.shadow);
-      }
-    }
   }
 
   #setupImages = function (shadowRoot) {
