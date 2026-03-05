@@ -2,6 +2,7 @@
 :root {
   --neutral-100: #e1e3e8;
   --neutral-900: #262a2e;
+  --neutral-25: #f7f8f9;
   --neutral-black: #0d0d0d;
   --blue: #2b3990;
 }
@@ -35,6 +36,21 @@ body {
 .dropdown-caret-opened::after {
   content: url("/assets/images/dropdown-caret-opened.svg");
   margin-left: 5px;
+}
+
+.body-14-medium {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.6%;
+}
+
+.body-14-regular {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.6%;
+  line-height: 20px;
 }
 
 /* Common styles END */
