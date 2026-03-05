@@ -18,6 +18,8 @@ class PageHeader extends HTMLElement {
       } else {
         header.innerHTML = `Please check path to template in page-header component`;
       }
+      // Set font class.
+      header.classList.add("body-14-medium")
     });
 
     // Set common styles. Didn't use a <link> tag because of limitations with setting path.
