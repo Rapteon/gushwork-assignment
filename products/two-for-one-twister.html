@@ -9,8 +9,21 @@
       href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css"
     />
     <link rel="stylesheet" href="../styles.css" type="text/css" />
+
+    <!-- Load common styles -->
+    <link rel="stylesheet" href="../styles.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Load all types first -->
     <script src="../types/NavData.js" defer></script>
+
+    <!-- Load helper functions -->
+    <script src="../components/helpers.js" defer></script>
 
     <!-- Load components after types -->
     <script src="../components/page-header/page-header.js" defer></script>
@@ -25,22 +38,15 @@
 
     <!-- Load main script -->
     <script src="../script.js" defer></script>
-
-    <!-- Load common styles -->
-    <link rel="stylesheet" href="../styles.css" type="text/css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <page-header></page-header>
-    <nav-breadcrumbs></nav-breadcrumbs>
     <main>
       <section class="product-info">
-        <product-listing></product-listing>
+        <nav-breadcrumbs></nav-breadcrumbs>
+        <product-listing
+          dataPath="/data/two-for-one-twister.json"
+        ></product-listing>
       </section>
     </main>
     <footer></footer>
