@@ -9,7 +9,8 @@ class ProductImages extends HTMLElement {
 
   connectedCallback() {
     this.shadow = this.attachShadow({ mode: "open" });
-    const div = document.createElement("div");
+    const div = document.createElement("table");
+    div.classList.add("product-images");
 
     // Fetch template content
     fetch("/components/product-listing/product-images/template.html").then(
@@ -42,6 +43,9 @@ class ProductImages extends HTMLElement {
     // will be called because we now have a static getter function called
     // observedAttributes()
     // Do something special if required here.
+    if (name === "srcset" && this.shadow) {
+      this.#setupImages(this.shadow);
+    }
   }
 
   #setupImages = function (shadowRoot) {

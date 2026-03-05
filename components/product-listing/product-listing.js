@@ -1,7 +1,9 @@
 class ProductListing extends HTMLElement {
-  static getobservedAttributes = [
-    "dataPath", // URL to file having the required product details.
-  ];
+  static get observedAttributes() {
+    return [
+      "dataPath", // URL to file having the required product details.
+    ];
+  }
   constructor() {
     super();
   }
@@ -15,6 +17,7 @@ class ProductListing extends HTMLElement {
     let uses = [
       "/components/product-listing/product-images/product-images.js",
       "/components/product-listing/product-tags/product-tags.js",
+      "/components/product-listing/technical-specs/technical-specs.js",
     ];
     for (let use of uses) {
       const script = document.createElement("script");
@@ -65,6 +68,14 @@ class ProductListing extends HTMLElement {
 
         const priceRange = shadowRoot.querySelector(".price-range-value");
         priceRange.innerText = json["priceRange"];
+
+        const stickyHeader = shadowRoot.querySelector("sticky-header");
+        stickyHeader.setAttribute("title", json["title"]);
+        stickyHeader.setAttribute("imgSrc", json["imgSet"][0] ?? "");
+        stickyHeader.setAttribute("priceRange", json["priceRange"]);
+
+        const technicalSpecs = shadowRoot.querySelector("technical-specs");
+        technicalSpecs.data = json["technicalSpecs"];
       });
   };
 }
