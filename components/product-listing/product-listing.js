@@ -9,6 +9,7 @@ class ProductListing extends HTMLElement {
   connectedCallback() {
     const shadow = this.attachShadow({ mode: "open" });
     const div = document.createElement("div");
+    div.classList.add("product-listing-container");
 
     // Add script tags for components used by this class.
     let uses = [
@@ -48,9 +49,22 @@ class ProductListing extends HTMLElement {
       .then((json) => {
         const productImages = shadowRoot.querySelector("product-images");
         productImages.setAttribute("srcset", json["imgSet"].join(" "));
-        
+
         const productTags = shadowRoot.querySelector("product-tags");
         productTags.setAttribute("tags", json["tags"].join(","));
+
+        const title = shadowRoot.querySelector("h2");
+        title.innerText = json["title"];
+
+        const featuresList = shadowRoot.querySelector(".product-features");
+        json["features"].forEach((feature) => {
+          const li = document.createElement("li");
+          li.innerText = feature;
+          featuresList.appendChild(li);
+        });
+
+        const priceRange = shadowRoot.querySelector(".price-range-value");
+        priceRange.innerText = json["priceRange"];
       });
   };
 }
