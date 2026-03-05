@@ -9,6 +9,7 @@ class NavBreadcrumbs extends HTMLElement {
     // Create HTML element
     const nav = document.createElement("nav");
     nav.classList.add('breadcrumb-navigation');
+    nav.classList.add('body-14-regular');
     const ol = document.createElement('ol');
     nav.appendChild(ol);
     shadow.appendChild(document.importNode(nav, true));
@@ -70,7 +71,7 @@ class NavBreadcrumbs extends HTMLElement {
     }
     let navDataArr = getNavDataArr();
     const navList = shadowRoot.querySelector(
-      'nav[class="breadcrumb-navigation"] > ol',
+      'nav[class~="breadcrumb-navigation"] > ol',
     );
     for (let navData of navDataArr) {
       const li = document.createElement("li");
