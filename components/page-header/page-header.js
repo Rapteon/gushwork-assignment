@@ -53,7 +53,6 @@ class PageHeader extends HTMLElement {
     const productDropdownText = productDropdown.querySelector("p");
     const productList = productDropdown.querySelector("ul");
     for (let navData of productNavData) {
-      console.log(navData);
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = navData.url;
